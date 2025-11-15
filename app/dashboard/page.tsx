@@ -4,14 +4,32 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAppStore } from '@/lib/store';
+import { TransactionModal } from '@/components/transaction-modal';
+import { RecentTransactions } from '@/components/recent-transactions';
 
 export default function DashboardPage() {
-  const { setTransactionModalOpen } = useAppStore();
   const [mounted, setMounted] = useState(false);
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [editingTransactionId, setEditingTransactionId] = useState<string | undefined>();
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  function handleTransactionSuccess() {
+    setRefreshKey((prev) => prev + 1);
+  }
+
+  function handleEditTransaction(id: string) {
+    setEditingTransactionId(id);
+    setIsTransactionModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsTransactionModalOpen(false);
+    setEditingTransactionId(undefined);
+  }
 
   if (!mounted) {
     return null;
@@ -27,7 +45,7 @@ export default function DashboardPage() {
             <p className="text-sm text-muted-foreground">Your Financial Mindfulness Dashboard</p>
           </div>
           <div className="flex gap-2">
-            <Button onClick={() => setTransactionModalOpen(true)} size="lg">
+            <Button onClick={() => setIsTransactionModalOpen(true)} size="lg">
               + Add Transaction
             </Button>
           </div>
@@ -109,15 +127,12 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Transactions</CardTitle>
-              <CardDescription>Your latest financial activity</CardDescription>
-            </CardHeader>
-            <CardContent className="flex items-center justify-center h-64 text-muted-foreground">
-              No transactions yet
-            </CardContent>
-          </Card>
+          <RecentTransactions 
+            limit={5} 
+            onEdit={handleEditTransaction}
+            onUpdate={handleTransactionSuccess}
+            key={refreshKey}
+          />
 
           <Card>
             <CardHeader>
@@ -131,8 +146,13 @@ export default function DashboardPage() {
         </div>
       </main>
 
-      {/* Transaction Modal Placeholder */}
-      {/* TODO: Add TransactionModal component */}
+      {/* Transaction Modal */}
+      <TransactionModal
+        open={isTransactionModalOpen}
+        onOpenChange={handleCloseModal}
+        transactionId={editingTransactionId}
+        onSuccess={handleTransactionSuccess}
+      />
     </div>
   );
 }

@@ -14,37 +14,37 @@
 - [x] Basic dashboard layout
 - [x] Comprehensive documentation
 
-## 🔄 Phase 2: Core Transaction System (NEXT)
+## 🔄 Phase 2: Core Transaction System (IN PROGRESS)
 
 ### Transaction Entry
-- [ ] Create `components/transaction-modal.tsx`
-  - [ ] Amount input with currency formatting
-  - [ ] Type selector (Expense/Income/Investment)
-  - [ ] Date picker (default: today)
-  - [ ] Category dropdown (load from Supabase)
-  - [ ] Tags input (multi-select, creatable)
-  - [ ] Mood selector (emoji buttons)
-  - [ ] Notes textarea
-  - [ ] Form validation
-  - [ ] Submit handler with encryption
-- [ ] Create `lib/services/transactions.ts`
-  - [ ] createTransaction() with encryption
-  - [ ] updateTransaction()
-  - [ ] deleteTransaction()
-  - [ ] getTransactions() with decryption
-  - [ ] getTransactionById()
-  - [ ] Tag association logic
+- [x] Create `components/transaction-modal.tsx`
+  - [x] Amount input with currency formatting
+  - [x] Type selector (Expense/Income/Investment)
+  - [x] Date picker (default: today)
+  - [x] Category dropdown (load from Supabase)
+  - [x] Tags input (multi-select, creatable)
+  - [x] Mood selector (emoji buttons)
+  - [x] Notes textarea
+  - [x] Form validation
+  - [x] Submit handler with encryption
+- [x] Create `lib/services/transactions.ts`
+  - [x] createTransaction() with encryption
+  - [x] updateTransaction()
+  - [x] deleteTransaction()
+  - [x] getTransactions() with decryption
+  - [x] getTransactionById()
+  - [x] Tag association logic
 
 ### Transaction Display
-- [ ] Create `components/transactions-list.tsx`
-  - [ ] Fetch and decrypt transactions
-  - [ ] Format currency and dates
-  - [ ] Category badges
-  - [ ] Mood indicators
-  - [ ] Tag chips
-  - [ ] Edit button (opens modal)
-  - [ ] Delete button with confirmation
-- [ ] Add to dashboard recent transactions section
+- [x] Create `components/recent-transactions.tsx`
+  - [x] Fetch and decrypt transactions
+  - [x] Format currency and dates
+  - [x] Category badges
+  - [x] Mood indicators
+  - [x] Tag chips
+  - [x] Edit button (opens modal)
+  - [x] Delete button with confirmation
+- [x] Add to dashboard recent transactions section
 - [ ] Create `app/transactions/page.tsx`
   - [ ] Full list with pagination
   - [ ] Filters (date range, category, tags, mood)
@@ -346,7 +346,7 @@
 ## 📊 Progress Tracking
 
 - **Phase 1**: ✅ 100% Complete
-- **Phase 2**: ⬜ 0% Complete - START HERE
+- **Phase 2**: 🔄 75% Complete - Transaction Entry ✅ | Transaction Display 50%
 - **Phase 3**: ⬜ 0% Complete
 - **Phase 4**: ⬜ 0% Complete
 - **Phase 5**: ⬜ 0% Complete
